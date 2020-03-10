@@ -117,3 +117,10 @@ add_subdirectory(${INTEGRATION_TESTS})
 add_subdirectory(${UNIT_TESTS})
 add_subdirectory(${PERFORMANCE_TESTS})
 add_subdirectory(${AWS_SDK_CPP})
+
+install(TARGETS elasticodbc DESTINATION install)
+
+#set(CPACK_WIX_UPGRADE_GUID "F9AAAAE2-D6AF-4EA4-BF46-B3E265400CC7")
+set(CPACK_GENERATOR WIX)
+
+include(CPack)
