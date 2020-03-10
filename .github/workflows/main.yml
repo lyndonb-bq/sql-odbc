@@ -60,6 +60,10 @@ jobs:
     - name: cmake-build
       run: |
         cmake --build cmake-build --config Release
+    - name: cpack-build
+      if: success()
+      run: |
+        cpack -G WIX -C Release
     #- name: test
     #  run: |
     #    cp .\\libraries\\VisualLeakDetector\\bin64\\*.* .\\bin64\\Release
@@ -70,9 +74,11 @@ jobs:
       run: |
         mkdir build
         mkdir test-output
+        mkdir installer
         cp .\\bin64\\Release\\*.dll build
         cp .\\bin64\\Release\\*.exe build
         cp .\\lib64\\Release\\*.lib build
+        cp .\\*.msi installer
     #    cp .\\bin64\\Release\\*.log test-output
     #    cp .\\bin64\\Release\\*.html test-output
     - name: upload-build
@@ -81,6 +87,12 @@ jobs:
       with:
         name: windows-build
         path: build
+    - name: upload-installer
+      if: always()
+      uses: actions/upload-artifact@v1
+      with:
+        name: windows-installer
+        path: installer
     #- name: upload-test-results
     #  if: always()
     #  uses: actions/upload-artifact@v1
