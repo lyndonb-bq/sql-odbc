@@ -63,7 +63,9 @@ jobs:
     - name: cpack-build
       if: success()
       run: |
+        cd cmake-build
         cpack -G NSIS -C Release
+        cd ..
     #- name: test
     #  run: |
     #    cp .\\libraries\\VisualLeakDetector\\bin64\\*.* .\\bin64\\Release
