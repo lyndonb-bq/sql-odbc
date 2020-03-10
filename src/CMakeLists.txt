@@ -58,6 +58,7 @@ set(UNIT_TESTS "${CMAKE_CURRENT_SOURCE_DIR}/UnitTests")
 set(LIBRARY_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../libraries)
 set(AWS_SDK_CPP "${CMAKE_CURRENT_SOURCE_DIR}/aws-sdk-cpp")
 set(AWS_SDK_CPP_CORE "${AWS_SDK_CPP}/aws-cpp-sdk-core/include")
+set(PACKAGE_VERSION "0.0.0")
 
 # Extensions of base directories
 set(PERFORMANCE_TESTS "${CMAKE_CURRENT_SOURCE_DIR}/PerformanceTests")
@@ -120,7 +121,7 @@ add_subdirectory(${AWS_SDK_CPP})
 
 install(TARGETS elasticodbc DESTINATION install)
 
-set(CPACK_WIX_UPGRADE_GUID "F9AAAAE2-D6AF-4EA4-BF46-B3E265400CC7")
-set(CPACK_GENERATOR WIX)
+#set(CPACK_WIX_UPGRADE_GUID "F9AAAAE2-D6AF-4EA4-BF46-B3E265400CC7")
+set(CPACK_GENERATOR NSIS)
 
 include(CPack)

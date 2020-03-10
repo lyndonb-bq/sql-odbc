@@ -63,7 +63,7 @@ jobs:
     - name: cpack-build
       if: success()
       run: |
-        cpack -G WIX -C Release
+        cpack -G NSIS -C Release
     #- name: test
     #  run: |
     #    cp .\\libraries\\VisualLeakDetector\\bin64\\*.* .\\bin64\\Release
