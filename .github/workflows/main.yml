@@ -22,7 +22,7 @@ jobs:
     - name: build-driver
       run: |
         cmake --build cmake-build
-        cpack -C Release
+        cpack -C Release -G Wix
     #- name: test
     #  run: | 
     #    bash ./run_test_runner.sh
