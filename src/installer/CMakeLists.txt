@@ -13,11 +13,21 @@
 #   permissions and limitations under the License.
 #
 
-install(TARGETS elasticodbc DESTINATION install)
 
-# redistribs
+# This is a unique id for the installer - required for Windows
+# Generated at https://www.guidgen.com/
+set(CPACK_WIX_UPGRADE_GUID "2D325BD7-1176-40E8-8AB8-C52DD2F7B792")
+
+# Loop runtime
 include(InstallRequiredSystemLibraries)
-#install(FILES ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION bin COMPONENT Libraries)
+install(TARGETS elasticodbc DESTINATION bin)
+
+### install(FILES ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION bin COMPONENT Libraries)
+#foreach(runtime ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS})
+#    MESSAGE( STATUS "Including runtime " ${runtime} )
+#    #set(CPACK_WIX_UPGRADE_GUID "F9AAAAE2-D6AF-4EA4-BF46-B3E265400CC5")
+#    install(FILES ${runtime} DESTINATION bin COMPONENT Libraries)
+#endforeach()
 
 set(CPACK_PACKAGE_NAME "opendistro-for-elasticsearch-sql-odbc")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Elasticsearch SQL ODBC Driver")
@@ -27,13 +37,14 @@ set(CPACK_PACKAGE_CONTACT "someemail@foo.blah")
 set(CPACK_PACKAGE_INSTALL_DIRECTORY "${CPACK_PACKAGE_NAME}")
 set(CPACK_SYSTEM_NAME "${CMAKE_SYSTEM_NAME}")
 
-# Wix doesn't allow extensionless licenses, need to make a copy with an extension
+# Wix doesn't allow extensionless licenses, need to make a copy with an extension, .txt is appropriate
 configure_file("${PROJECT_ROOT}/LICENSE" "${PROJECT_ROOT}/LICENSE.txt" COPYONLY)
 set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_ROOT}/LICENSE.txt")
 
+# Set install package version to our package version
 set(CPACK_PACKAGE_VERSION "${PACKAGE_VERSION}")
 
+# Set generator to WIX
 set(CPACK_GENERATOR "WIX")
-set(CPACK_WIX_UPGRADE_GUID "F9AAAAE2-D6AF-4EA4-BF46-B3E265400CC5")
 
 include(CPack)
