@@ -22,6 +22,7 @@ jobs:
     - name: build-driver
       run: |
         cmake --build cmake-build
+        cpack -C Release
     #- name: test
     #  run: | 
     #    bash ./run_test_runner.sh
@@ -68,6 +69,7 @@ jobs:
     - name: cmake-build
       run: |
         cmake --build cmake-build --config Release
+        cpack -C Release
     - name: cpack-build
       if: success()
       run: |
