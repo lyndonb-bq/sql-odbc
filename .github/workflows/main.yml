@@ -66,7 +66,7 @@ jobs:
       if: success()
       run: |
         cd cmake-build
-        msbuild .\PACKAGE.vcxproj
+        msbuild .\PACKAGE.vcxproj -p:Configuration=Release
         cd ..
     #- name: test
     #  run: |
