@@ -13,13 +13,16 @@
 #   permissions and limitations under the License.
 #
 
-# Set generator to WIX
-set(CPACK_GENERATOR "WIX")
-
-# This is a unique id for the installer - required for Windows
-# Generated at https://www.guidgen.com/
 if(WIN32)
+    # Set generator to WIX
+    set(CPACK_GENERATOR "WIX")
+
+    # This is a unique id for the installer - required for Windows
+    # Generated at https://www.guidgen.com/
     set(CPACK_WIX_UPGRADE_GUID "2D325BD7-1176-40E8-8AB8-C52DD2F7B792")
+else()
+    # See https://gitlab.kitware.com/cmake/community/-/wikis/doc/cpack/PackageGenerators for more details on package generators
+    set(CPACK_GENERATOR, "Bundle")
 endif()
 
 # Include system libraries in installer
