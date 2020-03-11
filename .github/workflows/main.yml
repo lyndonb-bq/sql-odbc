@@ -22,7 +22,7 @@ jobs:
     - name: build-driver
       run: |
         cmake --build cmake-build
-        cpack -C Release -G Wix
+        #cpack -C Release -G Wix
     #- name: test
     #  run: | 
     #    bash ./run_test_runner.sh
@@ -30,7 +30,7 @@ jobs:
       if: success()
       run: |
         cd cmake-build
-        make install
+        make package
         cd ..
     - name: create-output
       if: always()
@@ -69,7 +69,7 @@ jobs:
     - name: cmake-build
       run: |
         cmake --build cmake-build --config Release
-        cpack -C Release
+       # cpack -C Release
     - name: cpack-build
       if: success()
       run: |
