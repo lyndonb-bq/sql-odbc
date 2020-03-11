@@ -57,6 +57,8 @@ jobs:
         cd cmake-build
         cmake ..\\src
         cd ..
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1.0.0
     - name: cmake-build
       run: |
         cmake --build cmake-build --config Release
@@ -64,7 +66,7 @@ jobs:
       if: success()
       run: |
         cd cmake-build
-        cpack -C Release
+        msbuild ./PACKAGE.vsproj
         cd ..
     #- name: test
     #  run: |
