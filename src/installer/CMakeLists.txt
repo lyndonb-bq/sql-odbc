@@ -15,6 +15,10 @@
 
 install(TARGETS elasticodbc DESTINATION install)
 
+# redistribs
+include(InstallRequiredSystemLibraries)
+install(FILES ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION bin COMPONENT Libraries)
+
 set(CPACK_PACKAGE_NAME "opendistro-for-elasticsearch-sql-odbc")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Elasticsearch SQL ODBC Driver")
 set(CPACK_PACKAGE_DESCRIPTION_FILE "${PROJECT_ROOT}/README.md")
