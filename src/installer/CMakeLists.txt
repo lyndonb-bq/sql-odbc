@@ -12,22 +12,20 @@
 #   express or implied. See the License for the specific language governing
 #   permissions and limitations under the License.
 #
-
+# Set generator to WIX
+set(CPACK_GENERATOR "WIX")
 
 # This is a unique id for the installer - required for Windows
 # Generated at https://www.guidgen.com/
-set(CPACK_WIX_UPGRADE_GUID "2D325BD7-1176-40E8-8AB8-C52DD2F7B792")
+if(WIN32)
+    set(CPACK_WIX_UPGRADE_GUID "2D325BD7-1176-40E8-8AB8-C52DD2F7B792")
+endif()
 
-# Loop runtime
+# Include system libraries in installer
 include(InstallRequiredSystemLibraries)
-install(TARGETS elasticodbc DESTINATION bin)
 
-### install(FILES ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION bin COMPONENT Libraries)
-#foreach(runtime ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS})
-#    MESSAGE( STATUS "Including runtime " ${runtime} )
-#    #set(CPACK_WIX_UPGRADE_GUID "F9AAAAE2-D6AF-4EA4-BF46-B3E265400CC5")
-#    install(FILES ${runtime} DESTINATION bin COMPONENT Libraries)
-#endforeach()
+# Add elasticodbc project to installer
+install(TARGETS elasticodbc DESTINATION bin)
 
 set(CPACK_PACKAGE_NAME "opendistro-for-elasticsearch-sql-odbc")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Elasticsearch SQL ODBC Driver")
@@ -44,7 +42,5 @@ set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_ROOT}/LICENSE.txt")
 # Set install package version to our package version
 set(CPACK_PACKAGE_VERSION "${PACKAGE_VERSION}")
 
-# Set generator to WIX
-set(CPACK_GENERATOR "WIX")
 
 include(CPack)
