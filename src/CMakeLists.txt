@@ -122,5 +122,3 @@ add_subdirectory(${UNIT_TESTS})
 add_subdirectory(${PERFORMANCE_TESTS})
 add_subdirectory(${AWS_SDK_CPP})
 add_subdirectory(${INSTALL_SRC})
-
-include(CPack)
