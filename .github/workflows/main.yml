@@ -19,12 +19,18 @@ jobs:
         cd cmake-build
         cmake ../src
         cd ..
-    - name: cmake-build
+    - name: build-driver
       run: |
         cmake --build cmake-build
     #- name: test
     #  run: | 
     #    bash ./run_test_runner.sh
+    - name: build-installer
+      if: success()
+      run: |
+        cd cmake-build
+        make install
+        cd ..
     - name: create-output
       if: always()
       run: |
@@ -57,7 +63,7 @@ jobs:
         cd cmake-build
         cmake ..\\src
         cd ..
-    - name: Add msbuild to PATH
+    - name: add-msbuild-to-path
       uses: microsoft/setup-msbuild@v1.0.0
     - name: cmake-build
       run: |
