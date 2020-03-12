@@ -25,7 +25,7 @@ jobs:
     - name: build-driver-make-package
       run: |
         cd cmake-build
-        cpack -G "STGZ" 
+        cpack -G "NSIS" 
         cd ..
     #- name: test
     #  run: | 
