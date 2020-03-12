@@ -22,6 +22,21 @@ jobs:
     - name: build-driver
       run: |
         cmake --build cmake-build
+    - name: build-driver-make
+      run: |
+        cd cmake-build
+        make
+        cd ..
+    - name: build-driver-make-package
+      run: |
+        cd cmake-build
+        make package
+        cd ..
+    - name: build-driver-make-package
+      run: |
+        cd cmake-build
+        cpack -G "TGZ" 
+        cd ..
     #- name: test
     #  run: | 
     #    bash ./run_test_runner.sh
