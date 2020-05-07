@@ -94,7 +94,9 @@ set(aws-cpp-sdk-core_DIR "${PROJECT_ROOT}/AWSSDK/lib/cmake/aws-cpp-sdk-core")
 set(aws-c-event-stream_DIR "${PROJECT_ROOT}/AWSSDK/lib/aws-c-event-stream/cmake")
 set(aws-c-common_DIR "${PROJECT_ROOT}/AWSSDK/lib/aws-c-common/cmake")
 set(aws-checksums_DIR "${PROJECT_ROOT}/AWSSDK/lib/aws-checksums/cmake")
-find_package(AWSSDK REQUIRED core)
+if (WIN32)
+	find_package(AWSSDK REQUIRED core)
+endif()
 
 # General compiler definitions
 add_compile_definitions		(	_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING
