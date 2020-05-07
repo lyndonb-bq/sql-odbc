@@ -15,13 +15,20 @@
 #   permissions and limitations under the License.
 #
 
+cd src
+
 git clone "https://github.com/aws/aws-sdk-cpp.git"
 
 prefix_path=$(pwd)
+cd aws-sdk-cpp
 
 pwd
 
 ls -l
+
+cd ..
+
+cd ..
 
 # mkdir sdk-build
 
