@@ -20,10 +20,6 @@ else()
 cmake_minimum_required(VERSION 3.13) 
 endif()
 
-# Use shared libraries, which is the default for the AWS C++ SDK build.
-option(BUILD_SHARED_LIBS "Build shared libraries" ON)
-# Set BUILD_WITH_TESTS to OFF before building installer package for size optimization.
-option(BUILD_WITH_TESTS "Enable testing" ON)
 
 project(global_make_list)
 
@@ -31,6 +27,15 @@ project(global_make_list)
 if(APPLE)
 	set(CMAKE_CXX_STANDARD 14)
 	add_definitions(-DHAVE_STRLCAT)
+	# Use shared libraries, which is the default for the AWS C++ SDK build.
+	option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
+	# Set BUILD_WITH_TESTS to OFF before building installer package for size optimization.
+	option(BUILD_WITH_TESTS "Enable testing" ON)
+else()
+	# Use shared libraries, which is the default for the AWS C++ SDK build.
+	option(BUILD_SHARED_LIBS "Build shared libraries" ON)
+	# Set BUILD_WITH_TESTS to OFF before building installer package for size optimization.
+	option(BUILD_WITH_TESTS "Enable testing" ON)
 endif()
 
 if(MSVC)
@@ -83,16 +88,8 @@ set(VLD_SRC ${LIBRARY_DIRECTORY}/VisualLeakDetector/include)
 # Without this symbols will be exporting to Unix but not Windows
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE)	
 
-SET(CMAKE_SKIP_BUILD_RPATH FALSE)
-SET(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE) 
-SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
-SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
-LIST(FIND CMAKE_PLATFORM_IMPLICIT_LINK_DIRECTORIES "${CMAKE_INSTALL_PREFIX}/lib" isSystemDir)
-IF("${isSystemDir}" STREQUAL "-1")
-   SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
-ENDIF("${isSystemDir}" STREQUAL "-1")
-
 # Set path for AWS SDK
+set(aws-cpp-sdk-base "${PROJECT_ROOT}/AWSSDK/../aws-sdk-cpp")
 set(aws-cpp-sdk-core_DIR "${PROJECT_ROOT}/AWSSDK/lib/cmake/aws-cpp-sdk-core")
 set(aws-c-event-stream_DIR "${PROJECT_ROOT}/AWSSDK/lib/aws-c-event-stream/cmake")
 set(aws-c-common_DIR "${PROJECT_ROOT}/AWSSDK/lib/aws-c-common/cmake")
@@ -142,6 +139,7 @@ if(BUILD_WITH_TESTS)
 endif()
 
 # Projects to build
+add_subdirectory()
 add_subdirectory(${ODFEODBC_SRC})
 add_subdirectory(${ODFEENLIST_SRC})
 add_subdirectory(${INSTALL_SRC})
