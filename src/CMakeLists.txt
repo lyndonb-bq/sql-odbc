@@ -31,7 +31,6 @@ project(global_make_list)
 if(APPLE)
 	set(CMAKE_CXX_STANDARD 14)
 	add_definitions(-DHAVE_STRLCAT)
-	set(CMAKE_INSTALL_RPATH "/usr/local/lib")
 endif()
 
 if(MSVC)
