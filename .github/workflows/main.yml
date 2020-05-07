@@ -21,11 +21,11 @@ jobs:
         prefix_path=$(pwd)
         mkdir cmake-build
         cd cmake-build
-        cmake ../src -D CMAKE_INSTALL_PREFIX=$prefix_path/AWSSDK/
+        cmake ../src -D CMAKE_INSTALL_PREFIX=$prefix_path/AWSSDK/ -D BUILD_ONLY="core"
         cd ..
     - name: build-driver
       run: |
-        cmake --build cmake-build
+        cmake --build cmake-build -D BUILD_ONLY="core"
     #- name: test
     #  run: | 
     #    bash ./run_test_runner.sh
@@ -33,7 +33,7 @@ jobs:
       if: success()
       run: |
         cd cmake-build
-        cmake ../src -D CMAKE_INSTALL_PREFIX=$prefix_path/AWSSDK/ -D BUILD_WITH_TESTS=OFF
+        cmake ../src -D CMAKE_INSTALL_PREFIX=$prefix_path/AWSSDK/ -D BUILD_WITH_TESTS=OFF -D BUILD_ONLY="core"
         make
         cpack .
         cd ..

@@ -36,8 +36,6 @@ else()
 	option(BUILD_SHARED_LIBS "Build shared libraries" ON)
 	# Set BUILD_WITH_TESTS to OFF before building installer package for size optimization.
 	option(BUILD_WITH_TESTS "Enable testing" ON)
-	set(BUILD_ONLY "core")
-	option(BUILD_ONLY "core" ON)
 endif()
 
 if(MSVC)
