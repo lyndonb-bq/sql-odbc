@@ -27,12 +27,12 @@ project(global_make_list)
 if(APPLE)
 	set(CMAKE_CXX_STANDARD 14)
 	add_definitions(-DHAVE_STRLCAT)
-	# Use shared libraries, which is the default for the AWS C++ SDK build.
+	# Do not use shared libraries for AWS SDK.
 	option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 	# Set BUILD_WITH_TESTS to OFF before building installer package for size optimization.
 	option(BUILD_WITH_TESTS "Enable testing" ON)
 else()
-	# Use shared libraries, which is the default for the AWS C++ SDK build.
+	# Use shared libraries for AWS SDK.
 	option(BUILD_SHARED_LIBS "Build shared libraries" ON)
 	# Set BUILD_WITH_TESTS to OFF before building installer package for size optimization.
 	option(BUILD_WITH_TESTS "Enable testing" ON)
