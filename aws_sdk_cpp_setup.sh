@@ -19,6 +19,10 @@ git clone "https://github.com/aws/aws-sdk-cpp.git"
 
 prefix_path=$(pwd)
 
+pwd
+
+ls -l
+
 # mkdir sdk-build
 
 # cd sdk-build
