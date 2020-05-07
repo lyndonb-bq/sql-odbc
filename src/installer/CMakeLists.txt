@@ -113,14 +113,32 @@ if(WIN32)
     install(FILES "${PROJECT_ROOT}/AWSSDK/bin/aws-checksums.dll" DESTINATION bin COMPONENT "Driver")
     install(FILES "${PROJECT_ROOT}/AWSSDK/bin/aws-cpp-sdk-core.dll" DESTINATION bin COMPONENT "Driver")
 else()
-    find_library(awsccommon "${PROJECT_ROOT}/AWSSDK/lib" libaws-c-common)
-    find_library(awseventstream "${PROJECT_ROOT}/AWSSDK/lib" libaws-c-event-stream)
-    find_library(awschecksum "${PROJECT_ROOT}/AWSSDK/lib" libaws-checksums)
-    find_library(awscore "${PROJECT_ROOT}/AWSSDK/lib" libaws-cpp-sdk-core)
-    install(TARGETS awsccommon ARCHIVE DESTINATION bin COMPONENT "Driver")
-    install(TARGETS awseventstream ARCHIVE DESTINATION bin COMPONENT "Driver")
-    install(TARGETS awscore ARCHIVE DESTINATION bin COMPONENT "Driver")
-    install(TARGETS awschecksum ARCHIVE DESTINATION bin COMPONENT "Driver")
+    find_library(
+        AWSCOMMON 
+        PATHS "${PROJECT_ROOT}/AWSSDK/lib" 
+        NAMES libaws-c-common
+        PATH_SUFFIXES dylib
+        NO_DEFAULT_PATH)
+    find_library(
+        AWSEVENTSTREAM 
+        PATHS "${PROJECT_ROOT}/AWSSDK/lib" 
+        NAMES libaws-c-event-stream
+        PATH_SUFFIXES dylib
+        )
+    find_library(
+        AWSCORE 
+        PATHS "${PROJECT_ROOT}/AWSSDK/lib" 
+        NAMES libaws-cpp-sdk-core
+        )
+    find_library(
+        AWSCHECKSUM 
+        PATHS "${PROJECT_ROOT}/AWSSDK/lib" 
+        NAMES libaws-checksums
+        NO_DEFAULT_PATH)
+    install(TARGETS AWSCOMMON ARCHIVE DESTINATION bin COMPONENT "Driver")
+    install(TARGETS AWSEVENTSTREAM ARCHIVE DESTINATION bin COMPONENT "Driver")
+    install(TARGETS AWSCORE ARCHIVE DESTINATION bin COMPONENT "Driver")
+    install(TARGETS AWSCHECKSUM ARCHIVE DESTINATION bin COMPONENT "Driver")
 endif()
 
 include(CPack)
