@@ -89,7 +89,7 @@ set(VLD_SRC ${LIBRARY_DIRECTORY}/VisualLeakDetector/include)
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE)	
 
 # Set path for AWS SDK
-set(aws-cpp-sdk-base "${PROJECT_ROOT}/AWSSDK/../aws-sdk-cpp")
+set(aws-cpp-sdk-base "${PROJECT_ROOT}/../aws-sdk-cpp")
 set(aws-cpp-sdk-core_DIR "${PROJECT_ROOT}/AWSSDK/lib/cmake/aws-cpp-sdk-core")
 set(aws-c-event-stream_DIR "${PROJECT_ROOT}/AWSSDK/lib/aws-c-event-stream/cmake")
 set(aws-c-common_DIR "${PROJECT_ROOT}/AWSSDK/lib/aws-c-common/cmake")
@@ -141,7 +141,7 @@ if(BUILD_WITH_TESTS)
 endif()
 
 # Projects to build
-add_subdirectory()
+add_subdirectory(${aws-cpp-sdk-base})
 add_subdirectory(${ODFEODBC_SRC})
 add_subdirectory(${ODFEENLIST_SRC})
 add_subdirectory(${INSTALL_SRC})
