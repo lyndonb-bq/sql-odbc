@@ -115,7 +115,7 @@ if(WIN32)
 else()
     message("Symbol AWSSDK")
     message("${AWSSDK}")
-    install(TARGETS ${AWSSDK} ARCHIVE DESTINATION bin COMPONENT "Driver")
+    install(TARGETS AWSSDK ARCHIVE DESTINATION bin COMPONENT "Driver")
 endif()
 
 include(CPack)
