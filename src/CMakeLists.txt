@@ -141,7 +141,10 @@ if(BUILD_WITH_TESTS)
 endif()
 
 # Projects to build
-add_subdirectory(${aws-cpp-sdk-base})
+if (APPLE)
+	add_subdirectory(${aws-cpp-sdk-base})
+endif()
+
 add_subdirectory(${ODFEODBC_SRC})
 add_subdirectory(${ODFEENLIST_SRC})
 add_subdirectory(${INSTALL_SRC})
