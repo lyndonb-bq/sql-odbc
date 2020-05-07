@@ -32,5 +32,3 @@ ls -l
 # make 
 
 # make install 
-
-cd ..
