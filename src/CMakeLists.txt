@@ -89,7 +89,7 @@ set(VLD_SRC ${LIBRARY_DIRECTORY}/VisualLeakDetector/include)
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE)	
 
 # Set path for AWS SDK
-set(aws-cpp-sdk-base "${PROJECT_ROOT}/aws-sdk-cpp")
+set(aws-cpp-sdk-base "${CMAKE_CURRENT_SOURCE_DIR}/aws-sdk-cpp")
 set(aws-cpp-sdk-core_DIR "${PROJECT_ROOT}/AWSSDK/lib/cmake/aws-cpp-sdk-core")
 set(aws-c-event-stream_DIR "${PROJECT_ROOT}/AWSSDK/lib/aws-c-event-stream/cmake")
 set(aws-c-common_DIR "${PROJECT_ROOT}/AWSSDK/lib/aws-c-common/cmake")
