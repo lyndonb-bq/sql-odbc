@@ -39,6 +39,10 @@ else()
   add_compile_options(-Wall -Wextra -pedantic -Werror)
 endif()
 
+if (APPLE)
+	set(CMAKE_MACOSX_RPATH OFF)
+endif()
+
 if(CMAKE_SIZEOF_VOID_P EQUAL 8)
 	set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../lib64")
 	set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../lib64")
@@ -82,8 +86,6 @@ set(VLD_SRC ${LIBRARY_DIRECTORY}/VisualLeakDetector/include)
 
 # Without this symbols will be exporting to Unix but not Windows
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE)	
-
-set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
 # Set path for AWS SDK
 set(aws-cpp-sdk-core_DIR "${PROJECT_ROOT}/AWSSDK/lib/cmake/aws-cpp-sdk-core")
